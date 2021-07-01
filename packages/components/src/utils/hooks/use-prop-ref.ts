@@ -41,12 +41,12 @@ import { useEffect, useRef } from '@wordpress/element';
  * @param  prop
  * @return The prop reference.
  */
-export function usePropRef< T >( prop: T ): MutableRefObject< T > {
-	const propRef = useRef( prop );
+export function useLatestRef< T >( value: T ): RefObject< T > {
+	const ref = useRef( value );
 
-	useEffect( () => {
-		propRef.current = prop;
-	}, [ prop ] );
+	useLayoutEffect( () => {
+		ref.current = prop;
+	} );
 
-	return propRef;
+	return ref;
 }
